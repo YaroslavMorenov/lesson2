@@ -7,9 +7,11 @@ public class Task2 {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите число ");
         int number = in.nextInt();
-        int n1 = number % 10;
-        int n2 = number %100/10;
-        int n3 = number /100;
-        System.out.println(n1+n2+n3);
+        int result = 0;
+        String numbers = Integer.toString(number);
+        for (int i = 0; i < numbers.length(); i++) {
+            result += Integer.parseInt(String.valueOf(numbers.charAt(i)));
+        }
+        System.out.println(result);
     }
 }

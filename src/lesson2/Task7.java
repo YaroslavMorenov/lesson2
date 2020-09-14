@@ -11,18 +11,19 @@ public class Task7 {
         double rostov = 1.98;
         double krasnodar = 2.69;
         float kirov = 5.00f;
+        int time = 10;
         switch (number) {
             case 905:
-                System.out.println("Стоимость разговора:" + moscow * 10);
+                System.out.println("Стоимость разговора:" + moscow * time);
                 break;
             case 194:
-                System.out.println("Стоимость разговора:" + rostov * 10);
+                System.out.println("Стоимость разговора:" + rostov * time);
                 break;
             case 491:
-                System.out.println("Стоимость разговора:" + krasnodar * 10);
+                System.out.println("Стоимость разговора:" + krasnodar * time);
                 break;
             case 800:
-                System.out.println("Стоимость разговора:" + kirov * 10);
+                System.out.println("Стоимость разговора:" + kirov * time);
                 break;
             default:
                 System.out.println("Город не найден");

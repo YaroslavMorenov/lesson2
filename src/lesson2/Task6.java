@@ -9,20 +9,20 @@ public class Task6 {
         int number = in.nextInt();
         if (number == 0) {
             System.out.println("Нулевое число");
-        }
-        if (number < 0) {
-            if (number % 2 == 0) {
-                System.out.println("Отрицательное четное число");
+        } else {
+            StringBuilder result = new StringBuilder();
+            if (number > 0) {
+                result.append("Положительное");
             } else {
-                System.out.println("Отрицательное нечетное число");
+                result.append("Отрицательное");
             }
-        }
-        if (number > 0) {
             if (number % 2 == 0) {
-                System.out.println("Положительное четное число");
+                result.append(" четное");
             } else {
-                System.out.println("Положительное нечетное число");
+                result.append(" нечетное");
             }
+            result.append(" число");
+            System.out.println(result.toString());
         }
     }
 }

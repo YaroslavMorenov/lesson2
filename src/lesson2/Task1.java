@@ -7,6 +7,6 @@ public class Task1 {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите число ");
         int number = in.nextInt();
-        System.out.println((number%10));
+        System.out.println(number % 10);
     }
 }
