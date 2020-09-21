@@ -1,14 +1,10 @@
-package lesson3;
+package lesson3Student;
 
 public class Student {
     private String firstName;
     private String lastName;
     private String group;
     protected double averageMark;
-
-    public Student() {
-
-    }
 
     public String getFirstName() {
         return firstName;

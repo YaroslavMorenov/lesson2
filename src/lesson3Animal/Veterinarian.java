@@ -1,8 +1,8 @@
-package lesson3;
+package lesson3Animal;
 
 public class Veterinarian {
 
-    void treatAnimal( Animal animal ) {
+    public void treatAnimal( Animal animal ) {
         System.out.println(animal);
     }
 }

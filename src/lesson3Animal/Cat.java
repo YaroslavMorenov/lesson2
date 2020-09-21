@@ -1,10 +1,11 @@
-package lesson3;
+package lesson3Animal;
 
 public class Cat extends Animal {
-    String say = "мяу";
+    private String say;
 
-    public Cat( String food,String location ) {
+    public Cat( String food,String location,String say ) {
         super(food,location);
+        this.say = say;
     }
 
     public String getSay() {
@@ -22,7 +23,12 @@ public class Cat extends Animal {
 
     @Override
     public void eat() {
-        super.eat();
+        System.out.println("Кошка ест");
+    }
+
+    @Override
+    public void sleep() {
+
     }
 
     @Override

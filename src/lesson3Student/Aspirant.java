@@ -1,7 +1,7 @@
-package lesson3;
+package lesson3Student;
 
 public class Aspirant extends Student {
-    String scienceWork;
+    private String scienceWork;
 
     public Aspirant( double averageMark,String firstName,String lastName,String group,String scienceWork ) {
         super(averageMark,firstName,lastName,group);

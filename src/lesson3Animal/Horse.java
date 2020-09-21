@@ -1,10 +1,11 @@
-package lesson3;
+package lesson3Animal;
 
 public class Horse extends Animal {
-    String say = "иго-го";
+    private String say;
 
-    public Horse( String food,String location ) {
+    public Horse( String food,String location,String say ) {
         super(food,location);
+        this.say = say;
     }
 
     @Override
@@ -14,7 +15,12 @@ public class Horse extends Animal {
 
     @Override
     public void eat() {
-        super.eat();
+        System.out.println("Лошадь ест");
+    }
+
+    @Override
+    public void sleep() {
+
     }
 
     @Override

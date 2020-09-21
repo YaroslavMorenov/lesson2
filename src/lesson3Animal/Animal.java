@@ -1,8 +1,8 @@
-package lesson3;
+package lesson3Animal;
 
-public class Animal {
-    String food;
-    String location;
+public abstract class Animal {
+    private String food;
+    private String location;
 
     public Animal( String food,String location ) {
         this.food = food;
@@ -13,13 +13,9 @@ public class Animal {
         System.out.println(animal + " спит");
     }
 
-    public void eat() {
+    public abstract void eat();
 
-    }
-
-    public void sleep() {
-
-    }
+    public abstract void sleep();
 
     public String getFood() {
         return food;

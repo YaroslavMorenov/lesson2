@@ -1,14 +1,14 @@
-package lesson3;
+package lesson3Phone;
 
 import java.util.Arrays;
 
 public class Phone {
-    String number;
-    String model;
-    double weight;
+    protected String number;
+    protected String model;
+    protected double weight;
 
     public Phone( String number,String model,double weight ) {
-        this("877111","test");
+        this("898771132","TestModel");
     }
 
     public Phone( String number,String model ) {
@@ -17,6 +17,9 @@ public class Phone {
     }
 
     public Phone() {
+        this.number = "Number";
+        this.model = "Model";
+        this.weight = 123.12;
     }
 
     public void receiveCall( String nameOpponent ) {
