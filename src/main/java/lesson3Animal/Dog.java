@@ -1,9 +1,9 @@
 package lesson3Animal;
 
-public class Horse extends Animal {
+public class Dog extends Animal {
     private String say;
 
-    public Horse( String food,String location,String say ) {
+    public Dog( String food,String location,String say ) {
         super(food,location);
         this.say = say;
     }
@@ -15,16 +15,11 @@ public class Horse extends Animal {
 
     @Override
     public void eat() {
-        System.out.println("Лошадь ест");
-    }
-
-    @Override
-    public void sleep() {
-
+        System.out.println("Собака ест");
     }
 
     @Override
     public String toString() {
-        return "Horse food= " + getFood() + ", location= " + getLocation();
+        return "Dog food= " + getFood() + ", location= " + getLocation();
     }
 }

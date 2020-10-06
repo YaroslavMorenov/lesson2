@@ -15,7 +15,9 @@ public abstract class Animal {
 
     public abstract void eat();
 
-    public abstract void sleep();
+    public void sleep( String animal ) {
+        System.out.println(animal + " спит в " + location);
+    }
 
     public String getFood() {
         return food;

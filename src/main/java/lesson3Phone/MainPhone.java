@@ -5,7 +5,9 @@ public class MainPhone {
         Phone phone1 = new Phone();
         Phone phone2 = new Phone();
         Phone phone3 = new Phone();
-        System.out.println(phone1.model + '\t' + phone1.number + '\t' + phone1.weight);
+        System.out.println(phone1.getNumber());
+        System.out.println(phone2.getNumber());
+        System.out.println(phone3.getNumber());
         Phone[] phones = new Phone[3];
         phones[0] = new Phone();
         phones[1] = new Phone();

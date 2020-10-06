@@ -27,11 +27,6 @@ public class Cat extends Animal {
     }
 
     @Override
-    public void sleep() {
-
-    }
-
-    @Override
     public String toString() {
         return "Cat food= " + getFood() + ", location= " + getLocation();
     }

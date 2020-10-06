@@ -3,9 +3,9 @@ package lesson3Phone;
 import java.util.Arrays;
 
 public class Phone {
-    protected String number;
-    protected String model;
-    protected double weight;
+    private String number;
+    private String model;
+    private double weight;
 
     public Phone( String number,String model,double weight ) {
         this("898771132","TestModel");
