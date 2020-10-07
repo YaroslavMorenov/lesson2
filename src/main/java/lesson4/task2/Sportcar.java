@@ -1,6 +1,17 @@
 package lesson4.task2;
 
 public class Sportcar extends Car {
+
+    private int drive;
+
+    public Sportcar( String brand,String carClass,int weight,Engine engine,int drive ) {
+        this.brand = brand;
+        this.carClass = carClass;
+        this.weight = weight;
+        this.engine = engine;
+        this.drive = drive;
+    }
+
     @Override
     public void start() {
         System.out.println("Спорткар поехал");
@@ -13,6 +24,6 @@ public class Sportcar extends Car {
 
     @Override
     public void printInfo() {
-        System.out.println(brand + " " + carClass + " " + weight + " " + engine);
+        System.out.println(brand + " " + carClass + " " + weight + " " + engine + " " + drive);
     }
 }

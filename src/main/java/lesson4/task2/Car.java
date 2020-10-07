@@ -4,7 +4,7 @@ public abstract class Car {
     protected String brand;
     protected String carClass;
     protected double weight;
-    protected String engine;
+    protected Engine engine;
 
     public abstract void start();
 
