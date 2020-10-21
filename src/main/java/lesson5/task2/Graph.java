@@ -1,30 +1,34 @@
 package lesson5.task2;
 
-public class Graph implements Components {
+public class Graph extends ComponentsFactory implements Components {
     private String manufacturer;
     private String typeOfRam;
     private String sizeOf;
-    private CoolingGraph coolingGraph;
+    private TypeCoolingGraph typeCoolingGraph;
 
     public Graph() {
     }
 
-    public Graph( String manufacturer,String typeOfRam,String sizeOf,CoolingGraph coolingGraph ) {
+    public Graph( String manufacturer,String typeOfRam,String sizeOf,TypeCoolingGraph typeCoolingGraph ) {
         this.manufacturer = manufacturer;
         this.typeOfRam = typeOfRam;
         this.sizeOf = sizeOf;
-        this.coolingGraph = coolingGraph;
+        this.typeCoolingGraph = typeCoolingGraph;
     }
 
-    public void setGraph( String manufacturer,String typeOfRam,String sizeOf,CoolingGraph coolingGraph ) {
-        this.manufacturer = manufacturer;
-        this.typeOfRam = typeOfRam;
-        this.sizeOf = sizeOf;
-        this.coolingGraph = coolingGraph;
+
+    @Override
+    public String toString() {
+        return "Graph{" +
+                "manufacturer='" + manufacturer + '\'' +
+                ", typeOfRam='" + typeOfRam + '\'' +
+                ", sizeOf='" + sizeOf + '\'' +
+                ", typeCoolingGraph=" + typeCoolingGraph +
+                '}';
     }
 
     @Override
     public void output() {
-        System.out.println("Видеокарта");
+        System.out.println(toString());
     }
 }

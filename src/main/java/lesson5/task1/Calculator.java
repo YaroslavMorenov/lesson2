@@ -1,27 +1,27 @@
 package lesson5.task1;
 
 public class Calculator {
-    public static void plus( double first,double second,Logger logger ) {
-        Create create = logger.log("");
-        create.createLog();
-        System.out.println(" " + (first + second));
+    private String message;
+
+    public String getMessage() {
+        return message;
     }
 
-    public static void minus( double first,double second,Logger logger ) {
-        Create create = logger.log("");
-        create.createLog();
-        System.out.println(" " + (first - second));
-    }
-
-    public static void division( double first,double second,Logger logger ) {
-        Create create = logger.log("");
-        create.createLog();
-        System.out.println(" " + (first / second));
-    }
-
-    public static void multiplication( double first,double second,Logger logger ) {
-        Create create = logger.log("");
-        create.createLog();
-        System.out.println(" " + (first * second));
+    public Calculator( double first,double second,String operand ) {
+        switch (operand) {
+            case "*":
+                message = String.valueOf(first * second);
+                break;
+            case "+":
+                message = String.valueOf(first + second);
+                break;
+            case "-":
+                message = String.valueOf(first - second);
+                break;
+            case "/":
+                message = String.valueOf(first / second);
+                break;
+            default:
+        }
     }
 }

@@ -1,8 +1,8 @@
 package lesson5.task1;
 
-public class FileLogger extends Logger {
+public class FileLogger extends Logger implements Create {
     @Override
-    public Create log( String message ) {
-        return new File();
+    public void createLog( String message ) {
+        System.out.println("Log into file: " + message);
     }
 }

@@ -1,5 +1,5 @@
 package lesson5.task1;
 
 public interface Create {
-    void createLog();
+    void createLog( String message );
 }

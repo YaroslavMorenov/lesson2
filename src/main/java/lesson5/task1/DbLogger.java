@@ -1,8 +1,8 @@
 package lesson5.task1;
 
-public class DbLogger extends Logger {
+public class DbLogger extends Logger implements Create {
     @Override
-    public Create log( String message ) {
-        return new Db();
+    public void createLog( String message ) {
+        System.out.println("Log into database: " + message);
     }
 }
