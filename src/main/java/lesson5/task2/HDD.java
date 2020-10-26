@@ -1,6 +1,6 @@
 package lesson5.task2;
 
-public class HDD extends ComponentsFactory implements Components {
+public class HDD implements Components {
     private String manufacturer;
     private String sizeOfHDD;
     private TypeHDD typeHDD;

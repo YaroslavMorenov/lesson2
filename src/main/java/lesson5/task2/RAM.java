@@ -1,6 +1,6 @@
 package lesson5.task2;
 
-public class RAM extends ComponentsFactory implements Components {
+public class RAM implements Components {
     private String manufacturer;
     private int memorySize;
     private int frequency;

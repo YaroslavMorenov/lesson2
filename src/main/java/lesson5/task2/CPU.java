@@ -1,6 +1,6 @@
 package lesson5.task2;
 
-public class CPU extends ComponentsFactory implements Components {
+public class CPU implements Components {
     private int clockFrequency;
     private int countCore;
     private int cacheMemory;

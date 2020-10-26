@@ -1,6 +1,6 @@
 package lesson5.task2;
 
-public class Graph extends ComponentsFactory implements Components {
+public class Graph implements Components {
     private String manufacturer;
     private String typeOfRam;
     private String sizeOf;
