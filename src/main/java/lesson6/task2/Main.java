@@ -1,29 +1,62 @@
 package lesson6.task2;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Main {
-    public static void main( String[] args ) {
-        Box box = new Box<>();
-        Apple<String> apple1 = new Apple<>("Зеленое");
-        Apple<String> apple2 = new Apple<>("Красное");
-        Orange<String> orange1 = new Orange<>("Зеленое");
-        Orange<String> orange2 = new Orange<>("Красный");
-        box.add(apple1);
-        box.add(apple2);
-        box.add(orange1);
+    public static void main(String[] args) {
+        System.out.println("Складываем фрукты в коробки");
+        int randomCountOfApple = ThreadLocalRandom.current().nextInt(1,100);
+        int randomCountOfOrange = ThreadLocalRandom.current().nextInt(1,100);
+        Box<Apple> appleBox = new Box<>();
+        for(int i = 0; i <= randomCountOfApple; i++) {
+            appleBox.addFruit(new Apple());
+        }
+        System.out.println("Вес коробки c яблоками " + appleBox.getWeight());
 
-        Box box2 = new Box<>();
-        box2.add(orange1);
-        box2.add(orange2);
+        Box<Orange> orangeBox = new Box<>();
+        for(int i = 0; i <= randomCountOfOrange; i++) {
+            orangeBox.addFruit(new Orange());
+        }
+        orangeBox.getWeight();
+        System.out.println("Вес коробки с апельсинами " + orangeBox.getWeight());
 
-        box.print();
-        box2.print();
+        System.out.println("Сравним вес коробки с апельсинами с рандомной коробкой с фруктами: ");
+        compareWithRandomBox(orangeBox);
+        System.out.println("Сравним вес коробки с яблоками с рандомной коробкой с фруктами: ");
+        compareWithRandomBox(appleBox);
 
-        System.out.println("Вес коробки " + box.getWeight());
-        System.out.println("Вес коробки " + box2.getWeight());
+        System.out.println("Сравним вес коробки с апельсинами с той же коробкой апельсинов, чтобы убедиться, что сравнение корректное. ");
+        boolean result = orangeBox.compare(orangeBox);
 
-        System.out.println(box.compare(box2));
+        if(result) {
+            System.out.println("Коробки одинаково весят.");
+        } else {
+            System.out.println("Коробки не одинаковые.");
+        }
 
-        box.print();
-        box2.print();
+    }
+
+    public static void compareWithRandomBox(Box<? extends Fruit> fruitBox) {
+        int randomCountOfFruits = ThreadLocalRandom.current().nextInt(1,100);
+        int randomClassName = ThreadLocalRandom.current().nextInt(1,2);
+        boolean result;
+        if(randomClassName == 1) {
+            Box<Apple> boxToCompare = new Box<>();
+            for(int i = 0; i <= randomCountOfFruits; i++) {
+                boxToCompare.addFruit(new Apple());
+            }
+            result = fruitBox.compare(boxToCompare);
+        } else {
+            Box<Orange> boxToCompare = new Box<>();
+            for(int i = 0; i <= randomCountOfFruits; i++) {
+                boxToCompare.addFruit(new Orange());
+            }
+            result = fruitBox.compare(boxToCompare);
+        }
+        if(result) {
+            System.out.println("Коробки одинаково весят.");
+        } else {
+            System.out.println("Коробки не одинаковые.");
+        }
     }
 }

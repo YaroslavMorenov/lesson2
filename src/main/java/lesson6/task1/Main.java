@@ -1,7 +1,7 @@
 package lesson6.task1;
 
 public class Main {
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         ArrayCollection<String> arrayCollection = new ArrayCollection();
         arrayCollection.add("1");
         arrayCollection.add("2");
@@ -24,12 +24,12 @@ public class Main {
         list.add("3");
         list.add("4");
         list.print();
-        System.out.println(list.size());
+        System.out.println(list.getSize());
         list.remove(2);
         list.print();
         list.remove("4");
         list.print();
-        System.out.println(list.get(1));
+        System.out.println(list.getElement(1));
         list.clear();
         list.print();
     }

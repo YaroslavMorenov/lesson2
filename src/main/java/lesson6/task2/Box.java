@@ -1,54 +1,31 @@
 package lesson6.task2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Box<A> {
-    private Object[] box = new Object[0];
+public class Box<E extends Fruit> {
+    ArrayList<E> box = new ArrayList<>();
 
-    public void add( A item ) {
-        if ((box.length == 0)) {
-            Object[] result = new Object[box.length + 1];
-            for (int i = 0; i < box.length; i++) {
-                result[i] = box[i];
-            }
-            result[box.length] = item;
-            box = result;
-            item = null;
-        } else {
-            if ((item instanceof Orange) & (box[0] instanceof Orange) | (item instanceof Apple) & (box[0] instanceof Apple)) {
-                Object[] result = new Object[box.length + 1];
-                for (int i = 0; i < box.length; i++) {
-                    result[i] = box[i];
-                }
-                result[box.length] = item;
-                box = result;
-                item = null;
-            } else {
-                System.out.println("разные фрукты");
-            }
+    public void addFruit(E element) {
+        box.add(element);
+    }
+
+    public int getWeight() {
+        int totalWeight = 0;
+        for(E fruit : box) {
+            totalWeight += fruit.getWeight();
         }
+        return totalWeight;
     }
 
-    public double getWeight() {
-        double temp = 0;
-        if (box.length == 0) {
-            temp = 0;
+    public boolean compare(Box<? extends Fruit> newBoxToCompare) {
+        double currentBox = this.getWeight();
+        double boxToCompareWith = newBoxToCompare.getWeight();
+        if(currentBox == boxToCompareWith) {
+            return true;
         } else {
-            if (box[0] instanceof Orange) {
-                temp = (box.length * Orange.weight);
-            } else if (box[0] instanceof Apple) {
-                temp = (box.length * Apple.weight);
-            }
+            return false;
         }
-        return temp;
-    }
-
-    public boolean compare( Box compareBox ) {
-        return (this.getWeight() == compareBox.getWeight());
-    }
-
-    public void print() {
-        System.out.println(Arrays.toString(box));
     }
 }
 
