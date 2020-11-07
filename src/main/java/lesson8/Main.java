@@ -13,9 +13,9 @@ public class Main {
             "jdbc:h2:mem:test;INIT=RUNSCRIPT FROM './Database.sql'\\;RUNSCRIPT FROM './FactureForBase.sql'";
     private static final String SELECT = "SELECT * FROM ACCOUNTS";
 
-    public static void main( String[] args ) {
-        try (Connection connection = DriverManager.getConnection(mainScript);
-             Statement statement = connection.createStatement();) {
+    public static void main(String[] args) {
+        try(Connection connection = DriverManager.getConnection(mainScript);
+            Statement statement = connection.createStatement();) {
             ResultSet resultSet = statement.executeQuery(SELECT);
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT);
             AccountService accountService = new AccountService(resultSet,statement,connection,preparedStatement);
@@ -25,7 +25,7 @@ public class Main {
                 String input = sc.nextLine();
                 String[] arr = input.split(" ");
                 try {
-                    switch (arr[0]) {
+                    switch(arr[0]) {
                         case "balance":
                             accountService.balance(Integer.valueOf(arr[1]));
                             break;
@@ -42,15 +42,15 @@ public class Main {
                             System.out.println("Неизвестная операция");
                             break;
                     }
-                } catch (UnknownAccountException e) {
+                } catch(UnknownAccountException e) {
                     e.printStackTrace();
-                } catch (IOException e) {
+                } catch(IOException e) {
                     e.printStackTrace();
-                } catch (SQLException e) {
+                } catch(SQLException e) {
                     e.printStackTrace();
                 }
             }
-        } catch (SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         }
     }

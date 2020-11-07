@@ -12,26 +12,26 @@ public class AccountService {
     private Connection connection;
     private PreparedStatement preparedStatement;
 
-    public AccountService( ResultSet resultSet,Statement statement,Connection connection,PreparedStatement preparedStatement ) {
+    public AccountService(ResultSet resultSet,Statement statement,Connection connection,PreparedStatement preparedStatement) {
         this.resultSet = resultSet;
         this.statement = statement;
         this.connection = connection;
         this.preparedStatement = preparedStatement;
     }
 
-    void withdraw( int accountId,int amount ) throws NotEnoughMoneyException, UnknownAccountException, IOException, SQLException {
+    void withdraw(int accountId,int amount) throws NotEnoughMoneyException, UnknownAccountException, IOException, SQLException {
         String sql = "SELECT * FROM ACCOUNTS WHERE id = ?";
         String sql2 = "UPDATE ACCOUNTS SET amount = ? WHERE id = ?";
-        if (isUserExist(accountId) == false) {
+        if(!isUserExist(accountId)) {
             throw new UnknownAccountException("Пользователь не найден");
         } else {
             try {
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setInt(1,accountId);
                 resultSet = preparedStatement.executeQuery();
-                while (resultSet.next()) {
+                while(resultSet.next()) {
                     int temp = resultSet.getInt(3);
-                    if (temp < amount) {
+                    if(temp < amount) {
                         throw new NotEnoughMoneyException("Не хватает средств");
                     } else {
                         preparedStatement = connection.prepareStatement(sql2);
@@ -41,44 +41,50 @@ public class AccountService {
                         System.out.println("C баланса снято " + amount);
                     }
                 }
-            } catch (SQLException e) {
+            } catch(SQLException e) {
                 e.printStackTrace();
+            } finally{
+                connection.close();
+                statement.close();
             }
         }
     }
 
-    void balance( int accountId ) throws UnknownAccountException, SQLException {
+    void balance(int accountId) throws UnknownAccountException, SQLException {
         String sql = "SELECT * FROM ACCOUNTS WHERE id = ?";
-        if (isUserExist(accountId) == false) {
+        if(!isUserExist(accountId)) {
             throw new UnknownAccountException("Пользователь не найден");
         } else {
             try {
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setInt(1,accountId);
                 resultSet = preparedStatement.executeQuery();
-                while (resultSet.next()) {
+                while(resultSet.next()) {
                     System.out.println("Счет с идентификатором №" + accountId + " имеет сумму на счете " + resultSet.getInt(3));
                 }
-            } catch (SQLException e) {
+            } catch(SQLException e) {
                 e.printStackTrace();
+            } finally{
+                connection.close();
+                statement.close();
             }
         }
     }
 
-    void deposit( int accountId,int amount ) throws NotEnoughMoneyException, UnknownAccountException, SQLException {
+    void deposit(int accountId,int amount) throws NotEnoughMoneyException, UnknownAccountException, SQLException {
         String sql = "SELECT * FROM ACCOUNTS WHERE id = ?";
         String sql2 = "UPDATE ACCOUNTS SET amount = ? WHERE id = ?";
-        if (isUserExist(accountId) == false) {
+        if(!isUserExist(accountId)) {
             throw new UnknownAccountException("Пользователь не найден");
         } else {
-            if (amount <= 0) {
+            if(amount <= 0) {
                 throw new NotEnoughMoneyException("Некорректная сумма");
             } else {
                 try {
                     preparedStatement = connection.prepareStatement(sql);
                     preparedStatement.setInt(1,accountId);
                     resultSet = preparedStatement.executeQuery();
-                    while (resultSet.next()) {
+                    while(resultSet.next()) {
                         int temp = resultSet.getInt(3);
                         preparedStatement = connection.prepareStatement(sql2);
                         preparedStatement.setInt(1,(temp + amount));
@@ -86,37 +92,40 @@ public class AccountService {
                         preparedStatement.executeUpdate();
                         System.out.println("На счет внесено " + amount);
                     }
-                } catch (SQLException e) {
+                } catch(SQLException e) {
                     e.printStackTrace();
+                } finally{
+                    connection.close();
+                    statement.close();
                 }
             }
         }
 
     }
 
-    void transfer( int from,int to,int amount ) throws NotEnoughMoneyException, UnknownAccountException, SQLException {
+    void transfer(int from,int to,int amount) throws NotEnoughMoneyException, UnknownAccountException, SQLException {
         String sql = "SELECT * FROM ACCOUNTS WHERE id = ?";
         String sql2 = "UPDATE ACCOUNTS SET amount = ? WHERE id = ?";
-        if ((isUserExist(from) || isUserExist(to)) == false) {
+        if(!(isUserExist(from) || isUserExist(to))) {
             throw new UnknownAccountException("Пользователь не найден");
         } else {
-            if (amount <= 0) {
+            if(amount <= 0) {
                 throw new NotEnoughMoneyException("Некорректная сумма перевода");
             } else {
                 try {
                     preparedStatement = connection.prepareStatement(sql);
                     preparedStatement.setInt(1,from);
                     resultSet = preparedStatement.executeQuery();
-                    while (resultSet.next()) {
+                    while(resultSet.next()) {
                         int temp = resultSet.getInt(3);
-                        if (temp < amount) {
+                        if(temp < amount) {
                             throw new NotEnoughMoneyException("Недостаточно средств для перевода");
                         } else {
                             try {
                                 preparedStatement = connection.prepareStatement(sql);
                                 preparedStatement.setInt(1,to);
                                 resultSet = preparedStatement.executeQuery();
-                                while (resultSet.next()) {
+                                while(resultSet.next()) {
                                     temp = resultSet.getInt(3);
                                     preparedStatement = connection.prepareStatement(sql2);
                                     preparedStatement.setInt(1,(temp + amount));
@@ -126,7 +135,7 @@ public class AccountService {
                                 preparedStatement = connection.prepareStatement(sql);
                                 preparedStatement.setInt(1,from);
                                 resultSet = preparedStatement.executeQuery();
-                                while (resultSet.next()) {
+                                while(resultSet.next()) {
                                     temp = resultSet.getInt(3);
                                     preparedStatement = connection.prepareStatement(sql2);
                                     preparedStatement.setInt(1,(temp - amount));
@@ -134,26 +143,28 @@ public class AccountService {
                                     preparedStatement.executeUpdate();
                                 }
                                 System.out.println("На счет № " + to + " переведено: " + amount);
-                            } catch (SQLException e) {
+                            } catch(SQLException e) {
                                 e.printStackTrace();
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch(SQLException e) {
                     e.printStackTrace();
+                } finally{
+                    connection.close();
+                    statement.close();
                 }
             }
         }
     }
 
-    boolean isUserExist( int accountId ) throws SQLException {
+    boolean isUserExist(int accountId) throws SQLException {
         String sql = "SELECT * FROM ACCOUNTS WHERE id = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1,accountId);
         resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-            return true;
-        } else return false;
+        return resultSet.next();
     }
 }
+
 
