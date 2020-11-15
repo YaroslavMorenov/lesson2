@@ -26,7 +26,11 @@ public class LinkedListCollection<E> {
     }
 
     public void remove(int index) {
-        unlink((NewEl<E>) getElement(index));
+        NewEl<E> x = first;
+        for(int i = 0; i < index; i++) {
+            x = x.next;
+        }
+        unlink(x);
     }
 
     public void remove(E item) {

@@ -55,9 +55,7 @@ public class ArrayCollection<E> {
     }
 
     public void clear() {
-        for(int i = 0; i < array.length; i++) {
-            array[i] = null;
-        }
+        array = new Object[0];
     }
 
     public void print() {

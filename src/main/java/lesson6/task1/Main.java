@@ -7,11 +7,14 @@ public class Main {
         arrayCollection.add("2");
         arrayCollection.add("3");
         arrayCollection.add("4");
+        arrayCollection.add("5");
+        arrayCollection.add("6");
+        arrayCollection.add("7");
         arrayCollection.print();
         System.out.println(arrayCollection.size());
-        arrayCollection.remove(2);
+        arrayCollection.remove(0);
         arrayCollection.print();
-        arrayCollection.remove("4");
+        arrayCollection.remove("3");
         arrayCollection.print();
         System.out.println(arrayCollection.get(1));
         arrayCollection.clear();
@@ -25,7 +28,7 @@ public class Main {
         list.add("4");
         list.print();
         System.out.println(list.getSize());
-        list.remove(2);
+        list.remove(0);
         list.print();
         list.remove("4");
         list.print();
